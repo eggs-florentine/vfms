@@ -63,12 +63,6 @@ client.on(Events.InteractionCreate, async interaction => {
 }
 ,)
 
-client.on(Events.InteractionCreate, async interaction => {
-  if (!interaction.isButton()) { return; }
-
-  interaction.message.delete();
-});
-
 
 
 /*
@@ -101,5 +95,11 @@ client.on(Events.InteractionCreate, async interaction => {
 })
 */
 
+client.on(Events.InteractionCreate, async interaction => {
+  if (interaction.isButton()) {
+    interaction.client.guilds.cache.get('809897578195058690').members.cache.get(interaction.user.id).roles.add('862644795272200212'); // TODO: add vfms sserver ids and role ids
+    interaction.reply('Welcome, you have been given your roles.')
+  }
+})
 // Log in to Discord with your client's token
 client.login(token);
