@@ -8,19 +8,27 @@ module.exports = {
     .addSubcommand(subcommand =>
 		subcommand
 			.setName('accept')
-			.setDescription('accept an appeal'),)
+			.setDescription('accept an appeal')
+            .addUserOption(option =>
+                option
+                  .setName('user')
+                  .setDescription('The user who submitted the appeal')
+                  .setRequired(true)))
     .addSubcommand(subcommand =>
             subcommand
                 .setName('deny')
                 .setDescription('deny an appeal')
+                .addUserOption(option =>
+                    option
+                      .setName('user')
+                      .setDescription('The user who submitted the appeal')
+                      .setRequired(true))
                 .addStringOption(option => option.setName('notes').setDescription('notes e.g reason for denial or banned from appealing')))
-    .addUserOption(option =>
-      option
-        .setName('user')
-        .setDescription('The user who submitted it')
-        .setRequired(true)),
+                
+    ,
   async execute(interaction) {
 
+    if (!interaction.member.roles.cache.has('1153546820694327327')) { return; }
     if (interaction.options.getSubcommand() === 'accept') { 
         
         const accept = new EmbedBuilder()
@@ -33,7 +41,7 @@ module.exports = {
             { name: 'Rejoin the VFMS group and begin playing', value: 'After your suspension, you were kicked from the Roblox group. Once a member of the Senior Leadership Team tells you you have been unsuspended, you need to rejoin the roblox group and wait a bit to play on VFMS again!'},
         )
 
-        interaction.otpions.getOption('user').send({embeds: [accept]});
+        interaction.options.getUser('user').send({embeds: [accept]});
     }
 
     if (interaction.options.getSubcommand() === 'deny') { 
@@ -41,12 +49,12 @@ module.exports = {
         const deny = new EmbedBuilder()
         .setTitle('<:vfms:1153668810814013530> Notification of Appeal Denial')
         .setDescription('Hello (user). Your recent appeal against your VFMS permanent suspension has been **denied**. More information on your denial and notes  the reviewing staff member gave you are available below.')
-        .setColor(0x0faf4f)
+        .setColor(0xdd2f20)
         .addFields(
             { name: 'Notes', value: 'notes'},
         )
 
-        interaction.otpions.getOption('user').send({embeds: [deny]});
+        interaction.options.getUser('user').send({embeds: [deny]});
     }
 
     
