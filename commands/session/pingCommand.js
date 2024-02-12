@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ping')
-    .setDescription('Sends a note in the sessions channel to explain session-specific information.')
+    .setDescription('pong? you will see...')
     .addStringOption(option => 
       option
         .setName('content')
