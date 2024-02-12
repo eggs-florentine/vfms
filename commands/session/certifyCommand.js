@@ -22,7 +22,7 @@ module.exports = {
   async execute(interaction) {
 
 
-    if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { return; }
+    if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { interaction.reply('You do not have permission to run this command!'); return; }
 
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);

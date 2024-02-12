@@ -16,7 +16,7 @@ module.exports = {
         .setDescription('the role you want to promote them to')
         .setRequired(true)),
   async execute(interaction) {
-    if ( !interaction.member.roles.cache.has('1153546820694327327') ) { return; }
+    if ( !interaction.member.roles.cache.has('1153546820694327327') ) { interaction.reply('You do not have permission to run this command!'); return; }
 
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);

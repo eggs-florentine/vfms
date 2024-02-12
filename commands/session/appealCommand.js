@@ -38,7 +38,8 @@ module.exports = {
     }
     });
 
-    if (!interaction.member.roles.cache.has('1153546820694327327')) { return; }
+    if (!interaction.member.roles.cache.has('1153546820694327327')) { interaction.reply('You do not have permission to run this command!'); return; }
+    
     if (interaction.options.getSubcommand() === 'accept') { 
         
         const accept = new EmbedBuilder()
