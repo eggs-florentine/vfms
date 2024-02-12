@@ -21,7 +21,6 @@ module.exports = {
         .setRequired(true)),
   async execute(interaction) {
 
-    console.log(interaction.options.getString('certification'));
 
     if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { return; }
 
@@ -37,7 +36,6 @@ module.exports = {
     if (err) {
         console.error(err);
     } else {
-        console.log('written');
       // file written successfully
     }
     });
