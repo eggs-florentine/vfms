@@ -11,7 +11,7 @@ module.exports = {
         .setDescription('The user you want to onboard')
         .setRequired(true)),
   async execute(interaction) {
-    // if ( !interaction.member.roles.cache.has('1153547413055877192') &&  !interaction.member.roles.cache.has('1153546820694327327') ) { return; }
+    if ( !interaction.member.roles.cache.has('1153547413055877192') &&  !interaction.member.roles.cache.has('1153546820694327327') ) { return; }
 
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
@@ -38,7 +38,7 @@ module.exports = {
     });
 
     // TODO: give roles and add button
-    
+
     await interaction.reply({ content: 'Certification issued!', ephemeral: true });
   },
 };
