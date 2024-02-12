@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
 const fs = require('node:fs');
 
 module.exports = {
@@ -38,6 +38,13 @@ module.exports = {
         .addComponents(acknowledge);
 
     await interaction.options.getUser('user').send({content: welcome, components: [row]});
+
+    const embed = new EmbedBuilder()
+        .setTitle('Command usage')
+        .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
+        .addFields({name: 'Command', value: '/onboard ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
+
+    interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
 
     await interaction.reply({ content: 'onboarded!', ephemeral: true});
   },

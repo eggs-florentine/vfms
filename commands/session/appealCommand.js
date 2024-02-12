@@ -52,6 +52,13 @@ module.exports = {
             { name: 'Rejoin the VFMS group and begin playing', value: 'After your suspension, you were kicked from the Roblox group. Once a member of the Senior Leadership Team tells you you have been unsuspended, you need to rejoin the roblox group and wait a bit to play on VFMS again!'},
         )
 
+        const embed = new EmbedBuilder()
+        .setTitle('Command usage')
+        .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
+        .addFields({name: 'Command', value: '/appeal accept ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
+
+        interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+
         interaction.options.getUser('user').send({embeds: [accept]});
     }
 
@@ -64,6 +71,13 @@ module.exports = {
         .addFields(
             { name: 'Notes', value: interaction.options.getString('notes')},
         )
+
+        const embed = new EmbedBuilder()
+        .setTitle('Command usage')
+        .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
+        .addFields({name: 'Command', value: '/appeal deny ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
+
+        interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
 
         interaction.options.getUser('user').send({embeds: [deny]});
     }

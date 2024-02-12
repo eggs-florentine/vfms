@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
   async execute(interaction) {
 
 
-    if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { interaction.reply('You do not have permission to run this command!'); return; }
+    // if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { interaction.reply('You do not have permission to run this command!'); return; }
 
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
@@ -39,6 +39,13 @@ module.exports = {
       // file written successfully
     }
     });
+
+    const embed = new EmbedBuilder()
+        .setTitle('Command usage')
+        .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
+        .addFields({name: 'Command', value: '/certify ' + 'user: <@' + interaction.options.getUser('user').id + '> certification: ' + interaction.options.getString('certification')})
+
+    interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
 
     await interaction.reply({ content: 'Certification issued!', ephemeral: true });
   },

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 
 module.exports = {
@@ -34,6 +34,13 @@ module.exports = {
     });
 
     // TODO: give roblox group rank
+
+    const embed = new EmbedBuilder()
+        .setTitle('Command usage')
+        .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
+        .addFields({name: 'Command', value: '/promote ' + 'user: <@' + interaction.options.getUser('user').id + '> role:' + interaction.options.getRole('role').name})
+
+    interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
     
     await interaction.reply({ content: 'Promotion given!', ephemeral: true });
   },
