@@ -31,7 +31,7 @@ module.exports = {
 
     if (interaction.options.getString('certification') === 'acc') { gm.roles.add(interaction.guild.roles.cache.get('862644795272200212')); } // 1153613177821609994 acc deployment
 
-    obj = '{time: ' + interaction.createdAt + '}';
+    obj = '{\"time\": \"' + interaction.createdAt + '\"}';
     fs.writeFile('logs.json', obj, err => {
     if (err) {
         console.error(err);

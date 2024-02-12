@@ -28,6 +28,16 @@ module.exports = {
     ,
   async execute(interaction) {
 
+    obj = '{\"time\": \"' + interaction.createdAt + '\"}';
+    fs.writeFile('logs.json', obj, err => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log('written');
+      // file written successfully
+    }
+    });
+
     if (!interaction.member.roles.cache.has('1153546820694327327')) { return; }
     if (interaction.options.getSubcommand() === 'accept') { 
         

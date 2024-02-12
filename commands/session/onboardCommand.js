@@ -19,7 +19,7 @@ module.exports = {
     const welcome = "Welcome to the VFMS Staff Team. \n \n You have been selected by Division Leadership to represent the Vancouver Fire and Medical Services team of supervisors. \n Ensure you read the entirety of #⁠⁠staff-resources before you go on-duty. \n \n You now need to start logging your shifts. You can run the /shift command in ⁠⁠staff-spam. As stated on the application, you require 1 hour per week to keep your position. \n \n Please click the button below to acknowledge this message and be given your roles.";
 
 
-    obj = '{time: ' + interaction.createdAt + '}';
+    obj = '{\"time\": \"' + interaction.createdAt + '\"}';
     fs.writeFile('logs.json', obj, err => {
     if (err) {
         console.error(err);

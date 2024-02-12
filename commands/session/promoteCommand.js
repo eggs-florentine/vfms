@@ -23,7 +23,7 @@ module.exports = {
 
     gm.roles.cache.add(interaction.options.getRole('role'));
 
-    obj = '{time: ' + interaction.createdAt + '}';
+    obj = '{\"time\": \"' + interaction.createdAt + '\"}';
     fs.writeFile('logs.json', obj, err => {
     if (err) {
         console.error(err);
