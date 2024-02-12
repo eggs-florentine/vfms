@@ -17,6 +17,6 @@ module.exports = {
             { name: '/certify', value: '*cs* certifies a user with a given certification'}
         )
 
-        interaction.options.getUser('user').send({embeds: [gloss], ephemeral: true});
+        interaction.reply({embeds: [gloss], ephemeral: true});
   },
 };
