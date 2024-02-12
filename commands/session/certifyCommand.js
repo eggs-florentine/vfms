@@ -23,7 +23,7 @@ module.exports = {
 
     console.log(interaction.options.getString('certification'));
 
-    // if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { return; }
+    if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { return; }
 
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
