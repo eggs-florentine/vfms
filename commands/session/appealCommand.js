@@ -23,7 +23,7 @@ module.exports = {
                       .setName('user')
                       .setDescription('The user who submitted the appeal')
                       .setRequired(true))
-                .addStringOption(option => option.setName('notes').setDescription('notes e.g reason for denial or banned from appealing')))
+                .addStringOption(option => option.setName('notes').setDescription('notes e.g reason for denial or banned from appealing').setRequired(true)))
                 
     ,
   async execute(interaction) {
@@ -39,7 +39,7 @@ module.exports = {
     });
 
     if (!interaction.member.roles.cache.has('1153546820694327327')) { interaction.reply('You do not have permission to run this command!'); return; }
-    
+
     if (interaction.options.getSubcommand() === 'accept') { 
         
         const accept = new EmbedBuilder()
@@ -62,7 +62,7 @@ module.exports = {
         .setDescription('Hello (user). Your recent appeal against your VFMS permanent suspension has been **denied**. More information on your denial and notes  the reviewing staff member gave you are available below.')
         .setColor(0xdd2f20)
         .addFields(
-            { name: 'Notes', value: 'notes'},
+            { name: 'Notes', value: interaction.options.getString('notes')},
         )
 
         interaction.options.getUser('user').send({embeds: [deny]});

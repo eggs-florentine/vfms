@@ -4,7 +4,7 @@ const fs = require('node:fs');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('certify')
-    .setDescription('Certifies a user with either NFPA or ACP certification')
+    .setDescription('certifies a user with either NFPA or ACP certification')
     .addStringOption(option => 
       option
           .setName('certification')
