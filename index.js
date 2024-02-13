@@ -99,7 +99,8 @@ client.on(Events.InteractionCreate, async interaction => {
 
 client.on(Events.InteractionCreate, async interaction => {
   if (interaction.isButton()) {
-    interaction.client.guilds.cache.get('809897578195058690').members.cache.get(interaction.user.id).roles.add('862644795272200212'); // TODO: add vfms sserver ids and role ids
+    interaction.client.guilds.cache.get('1153503678653800490').members.cache.get(interaction.user.id).roles.add('1153547483125927979'); // TODO: add vfms sserver ids and role ids
+    interaction.client.guilds.cache.get('1153503678653800490').members.cache.get(interaction.user.id).roles.add('1153547346085433435');
     interaction.reply('Welcome, you have been given your roles.')
   }
 
@@ -188,7 +189,14 @@ client.on(Events.InteractionCreate, async interaction => {
     
     interaction.guild.channels.cache.get('1206541451786461224').send({embeds: [embed]});
 
-    interaction.guild.members.cache.find(m => m.nickname === user).send({embeds: [notification]});
+    try {
+      interaction.guild.members.cache.find(m => m.nickname === user).send({embeds: [notification]});
+    } catch {
+      interaction.reply('The user cannot be DMed messages.');
+      return;
+    }
+
+    
 
     interaction.reply('Issued DA!');
   }

@@ -44,7 +44,7 @@ module.exports = {
         
         const accept = new EmbedBuilder()
         .setTitle('<:vfms:1153668810814013530> Notification of Appeal Acceptance')
-        .setDescription('Hello (user). Your recent appeal against your VFMS permanent suspension has been **accepted**. Welcome back to the team! Please take the following measures.')
+        .setDescription('Hello. Your recent appeal against your VFMS permanent suspension has been **accepted**. Welcome back to the team! Please take the following measures.')
         .setColor(0x0faf4f)
         .addFields(
             { name: 'Review the rules, regulations and guidelines', value: 'After appealing your removal, you are held to an even higher standard than our regular members for a certain period of time after your appeal. We strongly encourage you review the guidelines again to prevent Disciplinary Action.'},
@@ -57,16 +57,21 @@ module.exports = {
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/appeal accept ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
 
-        interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+        interaction.guild.channels.cache.get('1206541620779024404').send({embeds: [embed]});
 
-        interaction.options.getUser('user').send({embeds: [accept]});
+        try {
+          interaction.options.getUser('user').send({embeds: [accept]});
+        } catch {
+          interaction.reply('The user cannot be DMed messages.');
+          return;
+        }
     }
 
     if (interaction.options.getSubcommand() === 'deny') { 
         
         const deny = new EmbedBuilder()
         .setTitle('<:vfms:1153668810814013530> Notification of Appeal Denial')
-        .setDescription('Hello (user). Your recent appeal against your VFMS permanent suspension has been **denied**. More information on your denial and notes  the reviewing staff member gave you are available below.')
+        .setDescription('Hello. Your recent appeal against your VFMS permanent suspension has been **denied**. More information on your denial and notes  the reviewing staff member gave you are available below.')
         .setColor(0xdd2f20)
         .addFields(
             { name: 'Notes', value: interaction.options.getString('notes')},
@@ -77,9 +82,15 @@ module.exports = {
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/appeal deny ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
 
-        interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+        interaction.guild.channels.cache.get('1206541620779024404').send({embeds: [embed]});
 
-        interaction.options.getUser('user').send({embeds: [deny]});
+
+        try {
+      interaction.options.getUser('user').send({embeds: [deny]});
+    } catch {
+      interaction.reply('The user cannot be DMed messages.');
+      return;
+    }
     }
 
     

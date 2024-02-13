@@ -10,7 +10,7 @@ module.exports = {
           .setName('certification')
           .setDescription('what to certify the user with')
           .addChoices(
-            {name: 'NFPA 1001', value: 'NFPA 1001'},
+            {name: 'National Fire Protection Association', value: 'NFPA 1001'},
             {name: 'Advanced Care Paramedic', value: 'Advanced Care Paramedic'},
           )
           .setRequired(true))
@@ -22,14 +22,14 @@ module.exports = {
   async execute(interaction) {
 
 
-    if ( !interaction.member.roles.cache.has('1200642758046658560') &&  !interaction.member.roles.cache.has('1200642570095706222') ) { interaction.reply('You do not have permission to run this command!'); return; }
+    if ( !interaction.member.roles.cache.has('1180524055548399718') &&  !interaction.member.roles.cache.has('1153546820694327327') ) { interaction.reply('You do not have permission to run this command!'); return; }
 
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
 
-    if (interaction.options.getString('certification') === 'NFPA 1001') { gm.roles.add(interaction.guild.roles.cache.get('843336886897737748')); } // 1206477803092967424 nfpa deployment
+    if (interaction.options.getString('certification') === 'NFPA 1001') { gm.roles.add(interaction.guild.roles.cache.get('1206477803092967424')); } // 1206477803092967424 nfpa deployment
 
-    if (interaction.options.getString('certification') === 'Advanced Care Paramedic') { gm.roles.add(interaction.guild.roles.cache.get('862644795272200212')); } // 1153613177821609994 acc deployment
+    if (interaction.options.getString('certification') === 'Advanced Care Paramedic') { gm.roles.add(interaction.guild.roles.cache.get('1153613177821609994')); } // 1153613177821609994 acc deployment
 
     obj = '{\"time\": \"' + interaction.createdAt + '\"}';
     fs.writeFile('logs.json', obj, err => {
@@ -45,7 +45,13 @@ module.exports = {
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/certify ' + 'user: <@' + interaction.options.getUser('user').id + '> certification: ' + interaction.options.getString('certification')})
 
-    interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+    try {
+      interaction.guild.channels.cache.get('1206541620779024404').send({embeds: [embed]});
+    } catch {
+      interaction.reply('The user cannot be DMed messages.');
+      return;
+    }
+    
 
     const certified = new EmbedBuilder()
         .setTitle('Congratulations on being certified!')

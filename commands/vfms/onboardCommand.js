@@ -37,14 +37,20 @@ module.exports = {
     const row = new ActionRowBuilder()
         .addComponents(acknowledge);
 
-    await interaction.options.getUser('user').send({content: welcome, components: [row]});
+        try {
+          await interaction.options.getUser('user').send({content: welcome, components: [row]});
+        } catch {
+          interaction.reply('The user cannot be DMed messages.');
+          return;
+        }
+    
 
     const embed = new EmbedBuilder()
         .setTitle('Command usage')
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/onboard ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
 
-    interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+    interaction.guild.channels.cache.get('1206541620779024404').send({embeds: [embed]});
 
     await interaction.reply({ content: 'onboarded!', ephemeral: true});
   },

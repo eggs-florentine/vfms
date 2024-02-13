@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ComponentType } = require('discord.js');
+const { SlashCommandBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ComponentType, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
         .setDescription('the user you want to give DA')
         .setRequired(true)),
   async execute(interaction) {
-    if ( !interaction.member.roles.cache.has('1153546820694327327') ) { interaction.reply('You do not have permission to run this command!'); return; }
+    if ( !interaction.member.roles.cache.has('1153546820694327327') & !interaction.member.roles.cache.has('1159671692684185610')) { interaction.reply('You do not have permission to run this command!'); return; }
 
     const select = new StringSelectMenuBuilder()
     .setCustomId('da')
@@ -64,7 +64,7 @@ module.exports = {
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/da ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
 
-    interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+    interaction.guild.channels.cache.get('1206541620779024404').send({embeds: [embed]});
 
 
   },

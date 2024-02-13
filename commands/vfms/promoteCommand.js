@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const axios = require('axios');
 const fs = require('node:fs');
 
 module.exports = {
@@ -21,7 +22,7 @@ module.exports = {
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
 
-    gm.roles.cache.add(interaction.options.getRole('role'));
+    gm.roles.add(interaction.options.getRole('role'));
 
     obj = '{\"time\": \"' + interaction.createdAt + '\"}';
     fs.writeFile('logs.json', obj, err => {
@@ -40,7 +41,16 @@ module.exports = {
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/promote ' + 'user: <@' + interaction.options.getUser('user').id + '> role:' + interaction.options.getRole('role').name})
 
-    interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+    await interaction.guild.channels.cache.get('1206541620779024404').send({embeds: [embed]});
+
+    if (interaction.options.getRole('role').name === 'advanced care paramedic') {
+      gm.roles.add(interaction.guild.roles.cache.get('862644795272200212'));
+      // remove supervisor role 
+      axios.patch('https://groups.roblox.com/v1/groups/33802420/users/3045485924', {
+        roleId: '105282939' 
+      }).then(response => console.log(response.data))
+      .catch(error => console.error(error));
+    }
     
     await interaction.reply({ content: 'Promotion given!', ephemeral: true });
   },
