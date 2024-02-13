@@ -143,23 +143,41 @@ client.on(Events.InteractionCreate, async interaction => {
     const extra = interaction.fields.getTextInputValue('extraInput');
     color = 0x00000;
 
+    daDescription = '';
+    
     switch (global.latestDaSubmission) {
       case 'Termination':
         color = 0xf54936;
+        daDescription = 'The supervisor\'s actions were so severe that their position will be revoked. They may not reapply unless they successfully submit a letter of appeal to the Clinical Education Coordinator.';
         break;
       case 'Demotion':
         color = 0xf58c36;
+        daDescription = 'The supervisor will be given a lower rank within the VFMS ranking structure.';
         break;
       case 'Suspension':
         color = 0xf5bf36;
+        daDescription = 'An even more severe action that revokes the supervisor\'s authority/position for a period of time (typically 3-7 days).';
         break;
       case 'Formal Written Warning':
         color = 0xd967db;
+        daDescription = 'A formal written warning signifies that the supervisor was found to have broken a policy and that they were spoken to about it. It can be used against the supervisor for further escalation if similar infractions occur later on.';
         break;
       case 'Documentation':
         color = 0xed7ecf;
         break;
     }
+
+    description = `This message is notifying you that you are being given a ${global.latestDaSubmission} due to ${reason}. \n \n **What is a ${global.latestDaSubmission}?** \n ${daDescription} \n \n **How do I appeal this?** \n If you feel this discipline is excessive or unwarranted, you may file an appeal by direct-messaging the Clinical Education Coordinator, MagiShira.
+\n \n If you believe that the investigating administrators targeted or harassed you in any way, you may direct message the Subdivision Coordinator, Akstrain.
+\n \n The aforementioned individuals are the only people you may contact to dispute this. Any attempts at appealing this action via a reply to this message will be disregarded. \n \n If you have any questions, let the person that issued this action know.`
+
+    const author = 'Issued by ' + interaction.user.displayName;
+
+    const notification = new EmbedBuilder()
+      .setTitle('VFMS | Notification of Disciplinary Action')
+      .setDescription(description)
+      .setColor(color)
+      .setAuthor({name: author})
 
     const embed = new EmbedBuilder()
       .setTitle(global.latestDaSubmission)
@@ -172,6 +190,8 @@ client.on(Events.InteractionCreate, async interaction => {
       .setColor(color)
     
     interaction.guild.channels.cache.get('1206541451786461224').send({embeds: [embed]});
+
+    interaction.guild.members.cache.find(m => m.nickname === user).send({embeds: [notification]});
 
     interaction.reply('Issued DA!');
   }

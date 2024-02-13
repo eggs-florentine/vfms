@@ -68,6 +68,9 @@ module.exports = {
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/da ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
 
+    const notification = new EmbedBuilder()
+        .setTitle
+
     interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
 
 
