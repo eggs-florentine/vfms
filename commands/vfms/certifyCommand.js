@@ -43,7 +43,7 @@ module.exports = {
     const embed = new EmbedBuilder()
         .setTitle('Command usage')
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
-        .addFields({name: 'Command', value: '/certify ' + 'user: <@' + interaction.options.getUser('user').id + '> certification: ' + interaction.options.getString('certification')})
+        .addFields({name: 'Command', value: '/certify ' + 'user: <@' + interaction.options.getUser('user').id + '> certification: ' + interaction.options.getString('certification') + ' certification.'})
 
     try {
       interaction.guild.channels.cache.get('1206541620779024404').send({embeds: [embed]});

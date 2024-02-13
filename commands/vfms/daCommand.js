@@ -11,7 +11,7 @@ module.exports = {
         .setDescription('the user you want to give DA')
         .setRequired(true)),
   async execute(interaction) {
-    if ( !interaction.member.roles.cache.has('1153546820694327327') & !interaction.member.roles.cache.has('1159671692684185610')) { interaction.reply('You do not have permission to run this command!'); return; }
+    if ( !interaction.member.roles.cache.has('1153546820694327327') && !interaction.member.roles.cache.has('1159671692684185610') && !interaction.member.roles.cache.has('1161944281561444353')) { interaction.reply('You do not have permission to run this command!'); return; }
 
     const select = new StringSelectMenuBuilder()
     .setCustomId('da')
