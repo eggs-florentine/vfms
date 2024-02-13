@@ -10,8 +10,8 @@ module.exports = {
           .setName('certification')
           .setDescription('what to certify the user with')
           .addChoices(
-            {name: 'NFPA 1001', value: 'nfpa'},
-            {name: 'Advanced Care Paramedic', value: 'acc'},
+            {name: 'NFPA 1001', value: 'NFPA 1001'},
+            {name: 'Advanced Care Paramedic', value: 'Advanced Care Paramedic'},
           )
           .setRequired(true))
     .addUserOption(option =>
@@ -27,9 +27,9 @@ module.exports = {
     const id = interaction.options.getUser('user').id;
     const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
 
-    if (interaction.options.getString('certification') === 'nfpa') { gm.roles.add(interaction.guild.roles.cache.get('843336886897737748')); } // 1206477803092967424 nfpa deployment
+    if (interaction.options.getString('certification') === 'NFPA 1001') { gm.roles.add(interaction.guild.roles.cache.get('843336886897737748')); } // 1206477803092967424 nfpa deployment
 
-    if (interaction.options.getString('certification') === 'acc') { gm.roles.add(interaction.guild.roles.cache.get('862644795272200212')); } // 1153613177821609994 acc deployment
+    if (interaction.options.getString('certification') === 'Advanced Care Paramedic') { gm.roles.add(interaction.guild.roles.cache.get('862644795272200212')); } // 1153613177821609994 acc deployment
 
     obj = '{\"time\": \"' + interaction.createdAt + '\"}';
     fs.writeFile('logs.json', obj, err => {
@@ -46,6 +46,13 @@ module.exports = {
         .addFields({name: 'Command', value: '/certify ' + 'user: <@' + interaction.options.getUser('user').id + '> certification: ' + interaction.options.getString('certification')})
 
     interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
+
+    const certified = new EmbedBuilder()
+        .setTitle('Congratulations on being certified!')
+        .setDescription('This is a notification to inform you you have been certified with the ' + interaction.options.getString('certification') + '! Congratulations. This was issued by ' + interaction.member.displayName + '.')
+        .setColor(0x0faf4f)
+    
+    await interaction.options.getUser('user').send({embeds: [certified]});
 
     await interaction.reply({ content: 'Certification issued!', ephemeral: true });
   },
