@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+/* const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 const fs = require('node:fs');
 
@@ -55,3 +55,4 @@ module.exports = {
     await interaction.reply({ content: 'Promotion given!', ephemeral: true });
   },
 };
+*/ 
