@@ -162,9 +162,6 @@ client.on(Events.InteractionCreate, async interaction => {
         color = 0xd967db;
         daDescription = 'A formal written warning signifies that the supervisor was found to have broken a policy and that they were spoken to about it. It can be used against the supervisor for further escalation if similar infractions occur later on.';
         break;
-      case 'Documentation':
-        color = 0xed7ecf;
-        break;
     }
 
     description = `This message is notifying you that you are being given a ${global.latestDaSubmission} due to ${reason}. \n \n **What is a ${global.latestDaSubmission}?** \n ${daDescription} \n \n **How do I appeal this?** \n If you feel this discipline is excessive or unwarranted, you may file an appeal by direct-messaging the Clinical Education Coordinator, MagiShira.

@@ -18,10 +18,6 @@ module.exports = {
     .setPlaceholder('What type of DA are you issuing?')
     .addOptions(
         new StringSelectMenuOptionBuilder()
-            .setLabel('Documentation')
-            .setDescription('Issue a documentation.')
-            .setValue('Documentation'),
-        new StringSelectMenuOptionBuilder()
             .setLabel('Formal Written Warning')
             .setDescription('Issue a FWW.')
             .setValue('Formal Written Warning'),
@@ -67,9 +63,6 @@ module.exports = {
         .setTitle('Command usage')
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({name: 'Command', value: '/da ' + 'user: <@' + interaction.options.getUser('user').id + '>'})
-
-    const notification = new EmbedBuilder()
-        .setTitle
 
     interaction.guild.channels.cache.get('851246677959770142').send({embeds: [embed]});
 
