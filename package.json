@@ -13,6 +13,7 @@
     "@types/node": "^18.0.6",
     "axios": "^1.6.7",
     "discord.js": "^14.14.1",
+    "mongodb": "6.3",
     "node-fetch": "^3.2.6"
   }
 }
