@@ -71,7 +71,7 @@ module.exports = {
         
         const deny = new EmbedBuilder()
         .setTitle('<:vfms:1153668810814013530> Notification of Appeal Denial')
-        .setDescription('Hello. Your recent appeal against your VFMS permanent suspension has been **denied**. More information on your denial and notes  the reviewing staff member gave you are available below.')
+        .setDescription('Hello. Your recent appeal against your VFMS permanent suspension has been **denied**. More information on your denial and notes the reviewing staff member gave you are available below.')
         .setColor(0xdd2f20)
         .addFields(
             { name: 'Notes', value: interaction.options.getString('notes')},
