@@ -1,0 +1,65 @@
+{
+    "adrenaline": {
+        "name": "Adrenaline",
+        "description": "Adrenaline causes the narrowing and constriction of blood vessels, as well as an increase in heart rate and speed of electrical conduction in the heart.",
+        "indications": "Cardiac Arrest (IV) \n Clinically significant low heart rate (IV) \n Clinically significant respiratory (breathing) difficulty (IV)"
+    },
+    "ondansetron": {
+        "name": "Ondansetron",
+        "description": "Ondansetron is an antiemetic, meaning it eases the feeling of nausea and vomiting.",
+        "indications": "Significant nausea (IM) \n Prolonged vomiting (IM)"
+    },
+    "nitroglycerin": {
+        "name": "Nitroglycerin",
+        "description": "Nitroglycerin relaxes the muscles in the vascular system and decreases the heart's demand for oxygen.",
+        "indications": "Chest pain (PO)"
+    },
+    "panadol": {
+        "name": "Panadol",
+        "description": "Panadol inhibits the production of prosttaglandins, leading to a reduction of pain.",
+        "indications": "Minor to mild pain (PO)"
+    },
+    "tranexamic": {
+        "name": "Tranexamic Acid",
+        "description": "Tranexamic Acid helps blood to clot. It blocks the conversion of certain enzymes, reducing the breakdown of blood clots and bleeding.",
+        "indications": "Clinically significant bleeding (PO)"
+    },
+    "fentanyl": {
+        "name": "Fentanyl",
+        "description": "Fentanyl binds to certain receptors int he brain and spinal cord, leading to pain relief.",
+        "indications": "Moderate to severe pain (PO)"
+    },
+    "salbutomol": {
+        "name": "Salbutomol (ACP Required)",
+        "description": "Salbutomol is a bronchodilator. It is an agonist (stimulator) of beta-2 receptors.",
+        "indications": "Release syndrome following crush injury (IV) \n Known or suspected hyperkalaemia (IV) \n Bronchospasm secondary to asthma (IV)"
+    },
+    "iv": {
+        "name": "Gaining Intravenous Access (IV)",
+        "description": "1. Identify the target vein \n 2. Prepare IV tubing, a cannula and a rubber tourniquet \n 3. Wipe down the area with a sterile wipe \n 4. Apply the tourniquet 5cm above the target vein \n 5. Insert the cannula at a shallow angle into the target vein \n 6. Push the catheter in and remove the needle \n 7. Attach the IV tubing to the catheter"
+    },
+    "im": {
+        "name": "Gaining Intramuscular Access (IM)",
+        "description": "1. Identify the ideal muscle \n 2. Draw the medicine into a syringe \n 3. Angle the needle horizontally with the targeted muscle \n 4. Administer the medicine"
+    },
+    "po": {
+        "name": "Gaining Oral Access (PO)",
+        "description": "1. Ensure the patient is capable of swallowing medicine, provide water if required \n 2. Give the patient the pill or liquid to swallow"
+    },
+    "mb": {
+        "name": "Addressing Major Bleeding",
+        "description": "1. Check for entry and exit wounds \n 2. Compress external bleeding with gauze \n 3. Once bleeding has slowed, apply a roller bandage around the wound. *Cover sucking chest wounds with a dressing* \n 4. Keep the patient warm"
+    },
+    "rsi": {
+        "name": "Performing Rapid Sequence Intubation (ACP Required)",
+        "description": "1. Attach nasal prongs to the patient and administer oxygen \n 2. Prepare a laryngoscope, an endotracheal tube and a manual ventilation bag \n 3. Take the laryngoscope and slide it down the patient's tongue \n 4. Take your endotracheal tube and slide it down the back of the laryngoscope \n 5. Remove the laryngoscope and bougie from the endotracheal tube \n 6. Inflate the small balloon on the endotracheal tube using a syringe \n 7. Attach an endotracheal tube holder and a timing light \n 8. Attach the manual ventilation bag to the other end of the endotracheal tube"
+    },
+    "pnt": {
+        "name": "Treating Pneumothorax (Open Finger Thoracastomy)",
+        "description": "1. Prepare a sterile wipe, a scalpel, a pair of forceps and a chest seal \n 2. Wipe down the affected side of the chest with a sterile wipe \n 3. Make an incision in the gap between the 5th and 6th rib \n 4. Push your finger into the incision to create a small opening \n 5. Push the forceps into the hole and spread them apart \n 6. Remove the forceps and place a chest seal over the incision"
+    },
+    "bnr": {
+        "name": "Caring For Burns",
+        "description": "1. Administer oxygen if suspected CO poisoning from smoke inhalation \n 2. Cool the burns for 20 minutes *If the patient continues to feel burning in the affected area, continue to cool the injury* \n 3. Loosely cover the burns with cling film after cooling"
+    }
+}
