@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+/* cconst { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -29,3 +29,4 @@ module.exports = {
         await interaction.reply('ok done <3');
     },
 };
+*/ 

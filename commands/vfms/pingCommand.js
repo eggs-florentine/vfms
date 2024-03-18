@@ -1,10 +1,12 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
+
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('pong? you will see...')
-    .addStringOption(option => 
+    .addStringOption(option =>
       option
         .setName('content')
         .setDescription('Content to send')

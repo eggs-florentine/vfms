@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 const uri = "mongodb+srv://reflqctnl:Z7dYtNMRSq0sYoKC@vfms.bizx1qj.mongodb.net/?retryWrites=true&w=majority";
+const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 module.exports = {
@@ -27,67 +28,71 @@ module.exports = {
 
     await interaction.deferReply({ ephemeral: true });
 
-    const id = interaction.options.getUser('user').id;
-    const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
+    try {
+      const id = interaction.options.getUser('user').id;
+      const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
 
-    /* const client = new MongoClient(uri, {
-      serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
+      /* const client = new MongoClient(uri, {
+        serverApi: {
+          version: ServerApiVersion.v1,
+          strict: true,
+          deprecationErrors: true,
+        }
+      }); 
+      
+      
+      try {
+        await client.connect();
+        console.log('connected')
+        client.db("vfms").collection('certifications').insertOne({ name: interaction.options.getUser('user').id, result: 'accepted', staff: interaction.user.id, time: interaction.createdAt, certification: interaction.options.getString('certification') });
+      } catch (e) {
+        console.log(e);
+      } finally {
+        await client.close();
+      } */
+
+      if (interaction.options.getString('certification') === 'NFPA 1001') { gm.roles.add(interaction.guild.roles.cache.get('1206477803092967424')); } // 1206477803092967424 nfpa deployment
+
+      if (interaction.options.getString('certification') === 'Advanced Care Paramedic') { gm.roles.add(interaction.guild.roles.cache.get('1153613177821609994')); } // 1153613177821609994 acc deployment
+
+      obj = '{\"time\": \"' + interaction.createdAt + '\"}';
+      fs.writeFile('logs.json', obj, err => {
+        if (err) {
+          console.error(err);
+        } else {
+          // file written successfully
+        }
+      });
+
+      const embed = new EmbedBuilder()
+        .setTitle('Command usage')
+        .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
+        .addFields({ name: 'Command', value: '/certify ' + 'user: <@' + interaction.options.getUser('user').id + '> certification: ' + interaction.options.getString('certification') + '' })
+
+      try {
+        interaction.guild.channels.cache.get('1206541620779024404').send({ embeds: [embed] });
+      } catch {
+        interaction.editReply('The user cannot be DMed messages.');
+        return;
       }
-    }); 
-    
-    
-    try {
-      await client.connect();
-      console.log('connected')
-      client.db("vfms").collection('certifications').insertOne({ name: interaction.options.getUser('user').id, result: 'accepted', staff: interaction.user.id, time: interaction.createdAt, certification: interaction.options.getString('certification') });
-    } catch (e) {
-      console.log(e);
-    } finally {
-      await client.close();
-    } */
 
-    if (interaction.options.getString('certification') === 'NFPA 1001') { gm.roles.add(interaction.guild.roles.cache.get('1206477803092967424')); } // 1206477803092967424 nfpa deployment
 
-    if (interaction.options.getString('certification') === 'Advanced Care Paramedic') { gm.roles.add(interaction.guild.roles.cache.get('1153613177821609994')); } // 1153613177821609994 acc deployment
+      const certified = new EmbedBuilder()
+        .setTitle('Congratulations on being certified!')
+        .setDescription('This is a notification to inform you you have been certified with the ' + interaction.options.getString('certification') + '! Congratulations. This was issued by ' + interaction.member.displayName + '.')
+        .setColor(0x0faf4f)
 
-    obj = '{\"time\": \"' + interaction.createdAt + '\"}';
-    fs.writeFile('logs.json', obj, err => {
-      if (err) {
-        console.error(err);
-      } else {
-        // file written successfully
+      try {
+        await interaction.options.getUser('user').send({ embeds: [certified] });
+      } catch {
+        interaction.editReply('The user cannot be DMed messages.')
+        return;
       }
-    });
 
-    const embed = new EmbedBuilder()
-      .setTitle('Command usage')
-      .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
-      .addFields({ name: 'Command', value: '/certify ' + 'user: <@' + interaction.options.getUser('user').id + '> certification: ' + interaction.options.getString('certification') + ' certification.' })
 
-    try {
-      interaction.guild.channels.cache.get('1206541620779024404').send({ embeds: [embed] });
-    } catch {
-      interaction.editReply('The user cannot be DMed messages.');
-      return;
+      await interaction.editReply({ content: 'Certification issued!', ephemeral: true });
+    } catch (error) {
+      interaction.guild.members.cache.get('684989568386334746').send('/certify error');
     }
-
-
-    const certified = new EmbedBuilder()
-      .setTitle('Congratulations on being certified!')
-      .setDescription('This is a notification to inform you you have been certified with the ' + interaction.options.getString('certification') + '! Congratulations. This was issued by ' + interaction.member.displayName + '.')
-      .setColor(0x0faf4f)
-
-    try {
-      await interaction.options.getUser('user').send({ embeds: [certified] });
-    } catch {
-      interaction.editReply('The user cannot be DMed messages.')
-      return;
-    }
-
-
-    await interaction.editReply({ content: 'Certification issued!', ephemeral: true });
   },
 }; 
