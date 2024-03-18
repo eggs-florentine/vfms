@@ -170,6 +170,21 @@ client.on(Events.InteractionCreate, async interaction => {
 
       await interaction.reply('Submitted log!');
       return;
+    } else if (interaction.customId === 'prm') {
+      await interaction.deferReply({ ephemeral: true });
+      const log = new EmbedBuilder()
+        .setTitle('Performance Review')
+        .setDescription(`Entered by <@${interaction.member.id}>`)
+        .addFields(
+          { name: 'Team', value: interaction.fields.getTextInputValue('teamInput') },
+          { name: 'Username', value: interaction.fields.getTextInputValue('userInput') },
+          { name: 'Helpfulness in Team Operations', value: interaction.fields.getTextInputValue('scoreInput') },
+          { name: 'Overall Performance', value: interaction.fields.getTextInputValue('narrativeInput') }
+        )
+
+      await interaction.guild.channels.cache.find(c => c.name === 'leadership').send({ embeds: [log] });
+      await interaction.editReply('Submitted review!');
+      return;
     }
 
 

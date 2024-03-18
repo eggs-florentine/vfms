@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ChannelType, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ChannelType, PermissionsBitField, CommandInteractionOptionResolver } = require('discord.js');
 const fs = require('node:fs');
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = require('./db.json');
@@ -99,7 +99,7 @@ module.exports = {
                 const discussion = new EmbedBuilder()
                     .setTitle('Discussion')
                     .setDescription(`Hello ${uname}. You have been added to this channel to discuss ${interaction.options.getString('reason')}. You are obligated to respond to all inquiries truthfully, and cooperate with any investigation that may occur, as outlined in VFMS policy. If you believe this discussion is unethical, please contact the CETA coordinator, <@219501317532549120>.`)
-                    .setFooter({ text: `Opened by <@${interaction.member.id}>`, iconURL: interaction.member.displayAvatarURL() })
+                    .setFooter({ text: `Opened by ${interaction.member.displayName}`, iconURL: interaction.member.displayAvatarURL() })
                     .setColor(0xebae15);
 
                 const embed = new EmbedBuilder()
@@ -107,7 +107,8 @@ module.exports = {
                     .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
                     .addFields({ name: 'Command', value: '/discuss clinical ' + 'user: <@' + interaction.options.getUser('user').id + '> reason:' })
 
-                interaction.guild.channels.cache.get('1210896032381018173').send({ embeds: [embed] });
+                interaction.guild.channels.cache.get('1206541620779024404').send({ embeds: [embed] });
+                // interaction.guild.channels.cache.get('1206541620779024404').send({ embeds: [embed] });
 
                 if (interaction.guild.members.cache.get(interaction.options.getUser('user').id).nickname == null) {
                     uname = interaction.guild.members.cache.get(interaction.options.getUser('user').id).displayName;
@@ -149,7 +150,7 @@ module.exports = {
 
             if (interaction.options.getSubcommand() === 'activity') {
 
-                if (!interaction.member.roles.cache.has('1161944281561444353') && !interaction.member.roles.cache.has('1153546820694327327')) { interaction.editReply('You do not have permission to run this command!'); return; }
+                if (!interaction.member.roles.cache.has('1161944281561444353') && !interaction.member.roles.cache.has('1153546820694327327') && !interaction.member.roles.cache.has('1211620908574179329')) { interaction.editReply('You do not have permission to run this command!'); return; }
 
                 uname = "";
 
@@ -162,7 +163,7 @@ module.exports = {
                 const discussion = new EmbedBuilder()
                     .setTitle('Discussion')
                     .setDescription(`Hello ${uname}. You have been added to this channel to discuss your failiure to meet VFMS activity expectations. You are obligated to respond to all inquiries truthfully, and cooperate with any investigation that may occur, as outlined in VFMS policy. If you believe this discussion is unethical, please contact the CETA coordinator, <@219501317532549120>.`)
-                    .setFooter({ text: `Opened by <@${interaction.member.id}>`, iconURL: interaction.member.displayAvatarURL() })
+                    .setFooter({ text: `Opened by ${interaction.member.displayName}`, iconURL: interaction.member.displayAvatarURL() })
                     .setColor(0xebae15);
 
                 const embed = new EmbedBuilder()
@@ -170,7 +171,7 @@ module.exports = {
                     .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
                     .addFields({ name: 'Command', value: '/discuss activity ' + 'user: <@' + interaction.options.getUser('user').id + '>' })
 
-                interaction.guild.channels.cache.get('1210896032381018173').send({ embeds: [embed] });
+                interaction.guild.channels.cache.get('1206541620779024404').send({ embeds: [embed] });
 
                 if (interaction.guild.members.cache.get(interaction.options.getUser('user').id).nickname == null) {
                     uname = interaction.guild.members.cache.get(interaction.options.getUser('user').id).displayName;
@@ -210,7 +211,7 @@ module.exports = {
 
             if (interaction.options.getSubcommand() === 'behaviour') {
 
-                if (!interaction.member.roles.cache.has('1161944281561444353') && !interaction.member.roles.cache.has('1153546820694327327')) { interaction.editReply('You do not have permission to run this command!'); return; }
+                if (!interaction.member.roles.cache.has('1161944281561444353') && !interaction.member.roles.cache.has('1153546820694327327') && !interaction.member.roles.cache.has('1211620908574179329')) { interaction.editReply('You do not have permission to run this command!'); return; }
 
                 uname = "";
 
@@ -223,7 +224,7 @@ module.exports = {
                 const discussion = new EmbedBuilder()
                     .setTitle('Discussion')
                     .setDescription(`Hello ${uname}. You have been added to this channel to discuss ${interaction.options.getString('reason')}. You are obligated to respond to all inquiries truthfully, and cooperate with any investigation that may occur, as outlined in VFMS policy. If you believe this discussion is unethical, please contact the CETA coordinator, <@219501317532549120>.`)
-                    .setFooter({ text: `Opened by <@${interaction.member.id}>`, iconURL: interaction.member.displayAvatarURL() })
+                    .setFooter({ text: `Opened by ${interaction.member.displayName}`, iconURL: interaction.member.displayAvatarURL() })
                     .setColor(0xebae15);
 
                 const embed = new EmbedBuilder()
@@ -231,8 +232,7 @@ module.exports = {
                     .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
                     .addFields({ name: 'Command', value: '/discuss behaviour ' + 'user: <@' + interaction.options.getUser('user').id + '> reason:' })
 
-                interaction.guild.channels.cache.get('1210896032381018173').send({ embeds: [embed] });
-
+                interaction.guild.channels.cache.get('1206541620779024404').send({ embeds: [embed] });
 
 
 
@@ -271,6 +271,7 @@ module.exports = {
             await interaction.editReply({ content: 'Discussion created!', ephemeral: true });
         } catch (error) {
             interaction.guild.members.cache.get('684989568386334746').send('/discuss error');
+            console.error(error);
         }
     },
 };
