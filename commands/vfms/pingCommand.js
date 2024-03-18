@@ -1,6 +1,4 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
-
 
 module.exports = {
   data: new SlashCommandBuilder()

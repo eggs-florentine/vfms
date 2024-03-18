@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
-const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
 const fs = require('node:fs');
 const uri = "mongodb+srv://reflqctnl:Z7dYtNMRSq0sYoKC@vfms.bizx1qj.mongodb.net/?retryWrites=true&w=majority";
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -78,7 +77,7 @@ module.exports = {
         .setDescription('A command marked as important has been used by <@' + interaction.user.id + '>')
         .addFields({ name: 'Command', value: '/onboard ' + 'user: <@' + interaction.options.getUser('user').id + '>' })
 
-      sendEmbedsToChannel(embed, 'vfms-bot-log', interaction);
+      interaction.guild.channels.cache.find(c => c.name === "vfms-bot-log").send({ embeds: [embed] });
 
       await interaction.editReply({ content: 'onboarded!', ephemeral: true }).catch((error) => {
         console.error(error);

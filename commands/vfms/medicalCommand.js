@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
 const { adrenaline, ondansetron, nitroglycerin, panadol, tranexamic, fentanyl, salbutomol, iv, im, po, mb, rsi, pnt, bnr } = require('./cpg.json');
 
 module.exports = {

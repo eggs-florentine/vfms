@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ComponentType, EmbedBuilder } = require('discord.js');
-const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
 const fs = require('node:fs')
 
 module.exports = {

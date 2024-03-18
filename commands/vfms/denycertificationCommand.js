@@ -1,7 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 const uri = "mongodb+srv://reflqctnl:Z7dYtNMRSq0sYoKC@vfms.bizx1qj.mongodb.net/?retryWrites=true&w=majority";
-const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 module.exports = {

@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder, ChannelType, PermissionsBitField } = require('discord.js');
-const { sendContentToChannel, sendEmbedsToChannel, addRoleByName, removeRoleByName, getChannelByName, getRoleByName, getMemberByName } = require('./InteractionManager.js')
 const fs = require('node:fs');
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = require('./db.json');
