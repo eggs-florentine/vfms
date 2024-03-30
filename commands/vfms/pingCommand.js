@@ -1,14 +1,10 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('pong? you will see...')
-    .addStringOption(option =>
-      option
-        .setName('content')
-        .setDescription('Content to send')
-        .setRequired(true)),
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction) {
     await interaction.reply({ content: 'pong!', ephemeral: true });
   },

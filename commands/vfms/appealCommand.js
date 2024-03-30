@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 const fs = require('node:fs');
 const uri = "mongodb+srv://reflqctnl:Z7dYtNMRSq0sYoKC@vfms.bizx1qj.mongodb.net/?retryWrites=true&w=majority";
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -16,7 +16,8 @@ module.exports = {
           option
             .setName('user')
             .setDescription('The user who submitted the appeal')
-            .setRequired(true)))
+            .setRequired(true))
+    )
     .addSubcommand(subcommand =>
       subcommand
         .setName('deny')
@@ -27,6 +28,7 @@ module.exports = {
             .setDescription('The user who submitted the appeal')
             .setRequired(true))
         .addStringOption(option => option.setName('notes').setDescription('notes e.g reason for denial or banned from appealing').setRequired(true)))
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles)
 
   ,
   async execute(interaction) {

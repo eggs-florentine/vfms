@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 const fs = require('node:fs');
 const uri = "mongodb+srv://reflqctnl:Z7dYtNMRSq0sYoKC@vfms.bizx1qj.mongodb.net/?retryWrites=true&w=majority";
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -20,7 +20,8 @@ module.exports = {
       option
         .setName('user')
         .setDescription('The user you want to certify')
-        .setRequired(true)),
+        .setRequired(true))
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageNicknames),
   async execute(interaction) {
 
     if (!interaction.member.roles.cache.has('1211620908574179329') && !interaction.member.roles.cache.has('1153546820694327327') && !interaction.member.roles.cache.has('1180524055548399718')) { interaction.reply('You do not have permission to run this command!'); return; }

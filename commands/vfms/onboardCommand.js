@@ -21,7 +21,7 @@ module.exports = {
       const id = interaction.options.getUser('user').id;
       const gm = interaction.guild.members.cache.get(interaction.options.getUser('user').id);
 
-      const welcome = ":tada: **Welcome to the VFMS Staff Team** \n \n You have been selected by Division Leadership to represent the Vancouver Fire and Medical Services team of supervisors. \n Ensure you read the entirety of **#⁠⁠staff-resources** before you go on-duty. \n \n You now need to start logging your shifts. You can run the `/shift` command in ⁠**⁠staff-spam**. As stated on the application, you require 1 hour per week to keep your position. \n \n Please click the button below to acknowledge this message and be given your roles.";
+      const welcome = ":tada: **Welcome to the VFMS Staff Team** \n \n  You have been selected by Division Leadership to represent the Vancouver Fire and Medical Services team of supervisors. \n Ensure you read the entirety of **#resources** before you go on-duty. \n \n VFMS has a staff team server you **must** join to properly become a supervisor. \n \n You now need to start logging your shifts. You can run the `/shift` command in ⁠**spam**. As stated on the application, you require 1 hour per week to keep your position. \n \n Please click the button below to acknowledge this message and be given your roles and an invite to the server.";
 
 
       obj = '{\"time\": \"' + interaction.createdAt + '\"}';

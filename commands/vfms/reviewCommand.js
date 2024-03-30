@@ -1,9 +1,10 @@
-const { EmbedBuilder, SlashCommandBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('review')
-        .setDescription('submit a biweekly performance review for a team member (LT+)'),
+        .setDescription('submit a biweekly performance review for a team member (LT+)')
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles),
     async execute(interaction) {
 
         if (!interaction.member.roles.cache.has('1211620908574179329')) { interaction.reply('You do not have permission to run this command!'); return; }

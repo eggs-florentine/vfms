@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ComponentType, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ComponentType, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 const fs = require('node:fs')
 
 module.exports = {
@@ -9,7 +9,8 @@ module.exports = {
       option
         .setName('user')
         .setDescription('the user you want to give DA')
-        .setRequired(true)),
+        .setRequired(true))
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageNicknames),
   async execute(interaction) {
     if (!interaction.member.roles.cache.has('1211620908574179329') && !interaction.member.roles.cache.has('1153546820694327327') && !interaction.member.roles.cache.has('1161944281561444353 ') && !interaction.member.roles.cache.has('1159671692684185610')) { interaction.reply('You do not have permission to run this command!'); return; }
 

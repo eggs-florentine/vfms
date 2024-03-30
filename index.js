@@ -121,9 +121,9 @@ client.on(Events.InteractionCreate, async interaction => {
 
 client.on(Events.InteractionCreate, async interaction => {
   if (interaction.isButton()) {
-    /* interaction.client.guilds.cache.get('1153503678653800490').members.cache.get(interaction.user.id).roles.add('1153547483125927979'); // TODO: add vfms sserver ids and role ids
-    interaction.client.guilds.cache.get('1153503678653800490').members.cache.get(interaction.user.id).roles.add('1153547346085433435');
-    interaction.reply('Welcome, you have been given your roles.') */
+    interaction.client.guilds.cache.get('1153503678653800490').members.cache.get(interaction.user.id).roles.add('1153547346085433435'); // TODO: add vfms sserver ids and role ids
+    interaction.client.guilds.cache.get('1153503678653800490').members.cache.get(interaction.user.id).roles.add('1153547483125927979');
+    interaction.reply('Welcome, you have been given your roles in the main server. Please join the server below to continue (do not share this invite with anyone else): https://discord.gg/9cEWYtjfGb')
   }
 
   if (interaction.isAnySelectMenu()) {

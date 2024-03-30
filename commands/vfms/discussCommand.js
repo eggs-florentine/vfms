@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ChannelType, PermissionsBitField, CommandInteractionOptionResolver } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ChannelType, PermissionsBitField, CommandInteractionOptionResolver, PermissionFlagsBits } = require('discord.js');
 const fs = require('node:fs');
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = require('./db.json');
@@ -20,7 +20,8 @@ module.exports = {
                     option
                         .setName('reason')
                         .setDescription('why you are opening the discussion')
-                        .setRequired(true)))
+                        .setRequired(true))
+        )
         .addSubcommand(subcommand =>
             subcommand
                 .setName('activity')
@@ -44,7 +45,7 @@ module.exports = {
                         .setName('reason')
                         .setDescription('why you are opening the discussion')
                         .setRequired(true)))
-    ,
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageNicknames),
     async execute(interaction) {
 
         await interaction.deferReply({ ephemeral: true });
