@@ -16,7 +16,6 @@ module.exports = {
 
     try {
       await interaction.deferReply({ ephemeral: true });
-  absghdbsagbsagbsdgnsabghljsbdhgbsakgnsagbdjagnsagbag
       const select = new StringSelectMenuBuilder()
         .setCustomId('da')
         .setPlaceholder('What type of DA are you issuing?')
